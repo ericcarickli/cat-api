@@ -16,11 +16,11 @@ class CreateCatsTable extends Migration
     {
         Schema::create('cats', function (Blueprint $table) {
             $table->id('id');
-            $table->string('name');
-            $table->string('temperament');
-            $table->string('origin');
-            $table->text('description');
-            $table->string('life_span');
+            $table->string('name')->default('nome');
+            $table->string('temperament')->nullable();
+            $table->string('origin')->nullable();
+            $table->text('description')->nullable();
+            $table->string('life_span')->nullable();
             $table->timestamps();
         });
     }

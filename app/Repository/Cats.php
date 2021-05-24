@@ -9,11 +9,11 @@ class Cats{
 
     public function getAll(){
 
-        $expiration = 60;
+        $seconds = 60*60;
         $key = "all";
         $cacheKey = $this->getCacheKey($key);
 
-        return cache()->remember($cacheKey, $expiration, function () {
+        return cache()->remember($cacheKey, $seconds, function () {
             $data = Cat::all();
             return response()->json($data);
         });

@@ -23,19 +23,7 @@ class CatController extends Controller
         $data = $this->cat->all();
         $quant = $data->count();
         if ($quant == 0) {
-
-            $response = Http::get('https://api.thecatapi.com/v1/breeds?attach_breed=0');
-            $responsej = json_decode($response);
-
-            foreach ($responsej as $cat) {
-                echo $cat->id;
-                echo"<hr>";
-                echo $cat->name;
-                echo"<hr>";
-                echo $cat->temperament;
-                echo"<hr>";
-            }
-            return;
+            return response()->json(['msg' => 'Banco de dados vazio']);
         }
         else {
             $cats =  new Cats();
@@ -43,8 +31,6 @@ class CatController extends Controller
             return $cat;
         }
 
-        // $data  = ['data' => $this->cat->all()];
-        // return response()->json($data);
     }
 
 
@@ -58,8 +44,14 @@ class CatController extends Controller
             $this->cat->create($array);
         }
 
-        // $catData = $request->all();
-        // $this->cat->create($catData);
+        return response()->json(['msg' => 'Dados do TheCatApi adicionado com sucesso!']);
+    }
+
+    public function storeManually(Request $request)
+    {
+        $catData = $request->all();
+        $this->cat->create($catData);
+        return response()->json(['msg' => 'Breed adicionado com sucesso!']);
     }
 
 
@@ -69,18 +61,17 @@ class CatController extends Controller
         return response()->json($data);
     }
 
-
     public function update(Request $request, $id)
     {
         $catData = $request->all();
         $cat = $this->cat->find($id);
         $cat->update($catData);
+        return response()->json(['msg' => 'Breed editado com sucesso']);
     }
-
 
     public function destroy(Cat $id)
     {
         $id->delete();
-        return response()->json(['data' => ['msg' => 'Seed:' . $id->name . ' deletado com sucesso']]);
+        return response()->json(['msg' => 'Breed:' . $id->name . ' deletado com sucesso']);
     }
 }
