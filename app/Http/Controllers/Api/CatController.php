@@ -23,18 +23,16 @@ class CatController extends Controller
         $data = $this->cat->all();
         $quant = $data->count();
         if ($quant == 0) {
-            return response()->json(['msg' => 'Banco de dados vazio']);
+            // return response()->json(['msg' => 'Banco de dados vazio']);
+            $this->store();
         }
-        else {
             $cats =  new Cats();
             $cat = $cats->getAll();
             return $cat;
-        }
-
     }
 
 
-    public function store(Request $request)
+    public function store()
     {
         $response = Http::get('https://api.thecatapi.com/v1/breeds?attach_breed=0');
         $responsej = json_decode($response);
@@ -44,7 +42,7 @@ class CatController extends Controller
             $this->cat->create($array);
         }
 
-        return response()->json(['msg' => 'Dados do TheCatApi adicionado com sucesso!']);
+        return true;
     }
 
     public function storeManually(Request $request)
