@@ -24,7 +24,7 @@ class CatController extends Controller
         $quant = $data->count();
         if ($quant == 0) {
             // return response()->json(['msg' => 'Banco de dados vazio']);
-            $this->store();
+            $this->storeFromTheCatApi();
         }
             $cats =  new Cats();
             $cat = $cats->getAll();
@@ -32,7 +32,7 @@ class CatController extends Controller
     }
 
 
-    public function store()
+    public function storeFromTheCatApi()
     {
         $response = Http::get('https://api.thecatapi.com/v1/breeds?attach_breed=0');
         $responsej = json_decode($response);
@@ -45,7 +45,7 @@ class CatController extends Controller
         return true;
     }
 
-    public function storeManually(Request $request)
+    public function store(Request $request)
     {
         $catData = $request->all();
         $this->cat->create($catData);

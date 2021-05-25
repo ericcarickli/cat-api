@@ -26,14 +26,13 @@ Route::group(['middleware' => 'apiJWT'], function () {
     Route::namespace('Api')->name('api.')->group(function () {
         Route::prefix('breed')->group(function(){
 
-            Route::get('/', 'CatController@index')->name('cats');
-            Route::get('/{id}', 'CatController@show')->name('cat_by_id');
+            Route::get('/', 'CatController@index')->name('breed');
+            Route::get('/{id}', 'CatController@show')->name('breed_by_id');
 
-            Route::post('/', 'CatController@store')->name('add_cat_from_thecatapi');
-            Route::post('/add', 'CatController@storeManually')->name('add_cat_manually');
-            Route::put('/{id}', 'CatController@update')->name('update_cat');
+            Route::post('/', 'CatController@store')->name('add_breed');
+            Route::put('/{id}', 'CatController@update')->name('update_breed');
 
-            Route::delete('/{id}', 'CatController@destroy')->name('delete_cat');
+            Route::delete('/{id}', 'CatController@destroy')->name('delete_breed');
         });
     });
 
