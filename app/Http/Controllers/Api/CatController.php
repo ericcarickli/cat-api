@@ -23,12 +23,12 @@ class CatController extends Controller
         $data = $this->cat->all();
         $quant = $data->count();
         if ($quant == 0) {
-            // return response()->json(['msg' => 'Banco de dados vazio']);
             $this->storeFromTheCatApi();
         }
-            $cats =  new Cats();
-            $cat = $cats->getAll();
-            return $cat;
+        
+        $cats =  new Cats();
+        $cat = $cats->getAll();
+        return $cat;
     }
 
 
