@@ -1,13 +1,13 @@
 # Implantação
-  1. Verifique se na sua máquina possui o docker instalado
-  2. Clone o projeto
+  1. Verifique se na sua máquina possui o docker instalado.
+  2. Clone o projeto.
   3. Na raiz do projeto, rode o seguinte comando no terminal: 
 ```jsx
-./db_init.sh
+sudo ./db_init.sh
 ```     
-  4. Após o docker iniciar, rode o seguinte comando:
+  4. Após o docker iniciar por completo, rode em outro terminal o seguinte comando:
  ```jsx
-./db_create.sh
+sudo ./db_create.sh
 ```     
    4. Teste da maneira que achar melhor :)
 
@@ -36,4 +36,6 @@ Token retornado a partir da requisição em auth/login deverá ser informado no 
 | DELETE | breed/id | JWT | - | Deleta um breed específico |
 
 # Observações
-Na rota /breed utilizando requisição GET, é verificado se o banco de dados está vazio, se sim, então é chamado uma função que retorna todos os dados do TheCatAPI e salva os mesmos no banco de dados, a partir disso é feita a consulta no banco de dados, e os dados retornados ficam salvos na cache que então é retornada no formato JSON.
+- Na rota /breed utilizando requisição GET, é verificado se o banco de dados está vazio, se sim, então é chamado uma função que retorna todos os dados do TheCatAPI e salva os mesmos no banco de dados, a partir disso é feita a consulta no banco de dados, e os dados retornados ficam salvos na cache que então é retornada no formato JSON.
+- Na primeira vez que quer realizar o primeiro comando, ele levará alguns vários minutos para terminar de instalar tudo que é necessário, como já diz na documentação do próprio laravel, então se caso demorar não estranhe, isso é normal acontecer :)
+
