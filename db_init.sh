@@ -1,5 +1,5 @@
 #!/bin/bash
 
-composer install
-./vendor/bin/sail up
-
+cp .env.example .env
+docker-compose -f composer.yml up
+docker-compose up

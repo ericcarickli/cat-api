@@ -1,0 +1,15 @@
+version: '3.3'
+services:
+  php:
+    image: php:7.4
+    container_name: php
+
+  composer:
+    image: composer
+    container_name: composer
+    working_dir: /app
+    volumes:
+      - .:/app
+    depends_on:
+      - php
+    command: bash -c "composer install --ignore-platform-reqs && composer update"
