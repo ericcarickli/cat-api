@@ -1,8 +1,8 @@
 #!/bin/bash
 
-docker exec -i db psql -d postgres -U postgres -c "create database cat_api;"
 cp .env.example .env
-bash vendor/bin/sail artisan key:generate
-bash vendor/bin/sail artisan migrate
-bash vendor/bin/sail artisan db:seed
-bash vendor/bin/sail artisan jwt:secret
+docker exec -i db psql -d postgres -U postgres -c "create database cat_api;"
+docker exec -i cat-api_laravel.test_1 php artisan key:generate
+docker exec -i cat-api_laravel.test_1 php artisan migrate
+docker exec -i cat-api_laravel.test_1 php artisan db:seed
+docker exec -i cat-api_laravel.test_1 php artisan jwt:secret
